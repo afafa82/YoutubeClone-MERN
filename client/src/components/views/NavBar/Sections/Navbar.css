@@ -8,6 +8,23 @@
     background-color: white;
 }
 
+.menu_left {
+    width: 30vw;
+}
+
+.menu_left ul li {
+    padding: 1px 20px !important;
+}
+
+.menu_right ul li {
+    padding: 1px 20px !important;
+}
+
+.menu_right ul {
+    width: 17vw;
+    justify-content: right;
+}
+
 .menu__logo {
     width: 150px;
     float: left;
@@ -16,7 +33,7 @@
 .menu__logo a {
     display: inline-block;
     font-size: 20px;
-    padding: 7px 20px;
+    padding: 9px 20px;
 }
 
 .menu__container .ant-menu-item {
@@ -74,7 +91,7 @@
         display: none;
     }
 
-   
+
 
     .menu__container .ant-menu-item,
     .menu__container .ant-menu-submenu-title {
@@ -85,20 +102,14 @@
         padding: 10px 20px;
     }
 }
-.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
-    border-right : none !important;
-    
-}
-ul.ant-menu-overflow.ant-menu.ant-menu-root.ant-menu-horizontal.ant-menu-light {
-    width: 30vw;
-}
 
-.ant-menu-item{
+
+
+.ant-menu-item {
     margin: 0 !important
 }
-.menu_right{
-    padding: 4.5px;
-}
+
+
 /* Signin, Singup 가로로 보여줄지, 세로로 보여줄지 정할 수 있음.
 ul.ant-menu.ant-menu-root.ant-menu-vertical.ant-menu-light {
     display: flow-root !important;

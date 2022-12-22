@@ -10,13 +10,6 @@ const MenuItemGroup = Menu.ItemGroup;
 function LeftMenu(props) {
   const navigate = useNavigate();
   return (
-    // <Menu
-    //   mode={props.mode}
-    //   items={[
-    //     { label: "Home", key: "home", icon: <HomeFilled /> },
-    //     { label: "Favorite", key: "favorite", icon: <DashboardOutlined />},
-    //   ]}
-    // ></Menu>
     <Menu
       mode={props.mode}
       onClick={({ key }) => {

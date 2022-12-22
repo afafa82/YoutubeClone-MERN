@@ -5,11 +5,11 @@ import {
   FileJpgOutlined,
   LoginOutlined,
   PoweroffOutlined,
+  VideoCameraAddOutlined,
 } from "@ant-design/icons";
 
 import axios from "axios";
 import { USER_SERVER } from "../../../../Config";
-import Auth from "../../../../hoc/auth";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -43,7 +43,9 @@ function RightMenu(props) {
         ]}
       ></Menu>
     );
-  } else {
+  }
+  //logout 이 나오게 함. 
+  else {
     return (
       <Menu
         onClick={({ key }) => {
@@ -51,15 +53,19 @@ function RightMenu(props) {
             //Todo, sign out feature here
 
             logoutHandler();
+          }else{
+            navigate(key)
           }
         }}
         mode={props.mode}
         items={[
-          { label: "Logout", key: "/logout", icon: <PoweroffOutlined /> },
+          //VideoUpload 메뉴 하나를 만들어준다. 이쁜 이미지와 함께!
+          {label:"Upload", key: "/video/upload",icon: <VideoCameraAddOutlined /> },
+          { label: "Logout", key: "/logout", icon: <PoweroffOutlined /> }
         ]}
       ></Menu>
     );
   }
 }
 
-export default Auth(RightMenu, false);
+export default RightMenu;
