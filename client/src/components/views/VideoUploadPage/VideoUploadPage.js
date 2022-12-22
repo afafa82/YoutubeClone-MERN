@@ -7,6 +7,7 @@ import Auth from "../../../hoc/auth";
 import { Typography, Button, Form, message, Input } from "antd";
 import Dropzone from "react-dropzone";
 import { PlusOutlined } from "@ant-design/icons";
+import axios from "axios";
 // import {} from 'antd/lib/icon'
 function VideoUploadPage(props) {
   const { Title } = Typography;
@@ -47,6 +48,26 @@ function VideoUploadPage(props) {
   const onCategoryChange = (e) => {
     setCategory(e.cuurentTarget.value);
   };
+
+  //서버에 request 를 보낼건데, axios를 이용해서 formdata를 함께 보낸다.
+  //근데, header에 content-type을 해줘야 에러를 막을 수 있음.
+  const onDrop = (files) => {
+    let formData = new FormData();
+    const config = {
+      header: { "content-type": "multipart/form-data" },
+    };
+    formData.append("file", files[0]);
+
+    //아래 코드가 실행될 수 있게 server(backend)쪽으로 가서 post router 만들어준다.
+    axios.post("/api/video/uploadfiles", formData, config).then(response => {
+      if(response.data.success){
+        console.log(response.data)
+      }else{
+        alert("Video Upload Failed");
+      }
+    });
+    console.log(files);
+  };
   return (
     <div style={{ maxWidth: "700px", margin: "2rem auto" }}>
       <div style={{ textAlign: "center", marginBottom: "2rem" }}>
@@ -55,7 +76,8 @@ function VideoUploadPage(props) {
       <Form onSubmit>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           {/* Drop Zone */}
-          <Dropzone onDrop multiple maxSize>
+          {/* 동영상 하나만 올릴 때는 multiple 을 false 로 설정 */}
+          <Dropzone onDrop={onDrop} multiple={false} maxSize={1000000000}>
             {({ getRootProps, getInputProps }) => (
               <div
                 style={{
